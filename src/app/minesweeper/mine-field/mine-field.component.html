@@ -1,0 +1,11 @@
+<table>
+  <tr *ngFor="let row of gameCells">
+    <td *ngFor="let gameCell of row">
+      <app-game-cell [isGameRunning]='isGameRunning' [gameCell]='gameCell' (revealed)='onRevealed($event)'></app-game-cell>
+    </td>
+  </tr>
+</table>
+<!--
+<div class="row" *ngFor="let row of gameCells">
+  <app-game-cell *ngFor="let gameCell of row" [isGameRunning]='isGameRunning' [gameCell]='gameCell' (revealed)='onRevealed($event)'></app-game-cell>
+</div>-->
