@@ -1,1 +1,1 @@
-<button [disabled]='gameCell.isRevealed || !isGameRunning' (click)='tryReveal()' (contextmenu)='onRightClick()'>{{getRepresentation()}}</button>
+<button [disabled]='gameCell.isRevealed || !isGameRunning' (press)='onPress($event)' (click)='tryReveal()' (contextmenu)='onContextMenu($event)'>{{getRepresentation()}}</button>

@@ -15,7 +15,8 @@ import { AppComponent } from './app.component';
     MinesweeperModule,
     RouterModule.forRoot([
       { path: 'minesweeper', component: MineFieldComponent },
-      { path: '**', redirectTo: 'minesweeper', pathMatch: 'full' }
+      { path: '**', redirectTo: 'minesweeper', pathMatch: 'full' },
+
   ])],
   bootstrap: [AppComponent]
 })

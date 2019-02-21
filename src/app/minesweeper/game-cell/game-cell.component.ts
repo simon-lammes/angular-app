@@ -1,5 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { GameCell } from './game-cell';
+import 'hammerjs';
+import { $ } from 'protractor';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-game-cell',
@@ -19,9 +22,19 @@ export class GameCellComponent {
     this.revealed.emit(this.gameCell);
   }
 
-  onRightClick(): boolean {
-    this.gameCell.isFlagged = !this.gameCell.isFlagged;
+  onPress(event: any): void {
+    if (event.eventType !== 2) {
+      this.switchFlag();
+    }
+  }
+
+  onContextMenu(event: any): boolean {
+    this.switchFlag();
     return false;
+  }
+
+  switchFlag()  {
+    this.gameCell.isFlagged = !this.gameCell.isFlagged;
   }
 
   getRepresentation(): string {
