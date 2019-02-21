@@ -1,27 +1,25 @@
 # AngularApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.1.
+This is [my Angular Website](https://simon-lammes.github.io/angular-app/) hosted on GitHub.
 
-## Development server
+## How to collaborate
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+1. Take a copy of my master branch.
+1. Test your changes locally.
+1. Make a pull request.
+1. I should then be able to test your changes locally and deploy them.
 
-## Code scaffolding
+## How to prepare an Angular application for deployment
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. Install [node.js](https://nodejs.org/en/) as it comes with npm.
+1. Run **npm install -g angular-cli-ghpages**. This will enable you to run the **ngh** command later.
+1. Inside your project inside angular.json set the outputPath to "dist/".
+1. Connect your local repository to the remote GitHub repository from where you want your repository to be shared.
 
-## Build
+## How I deploy this Angular application on GitHub
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+After I have once prepared my Angular application for deployment, I run the following commands inside the terminal whenever I want to deploy local changes. The terminal should of course be directed to the Angular application root directory.
 
-## Running unit tests
+1. **ng build --prod --base-href "https://simon-lammes.github.io/angular-app/"** This creates a deployable application inside the dist folder of the project.
+1. **ngh** This pushes the deployable application inside the dist folder to the remote repository inside the gh-pages branch from where the site is hosted.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
