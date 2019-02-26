@@ -1,3 +1,4 @@
+import { MinesweeperGameComponent } from './minesweeper/minesweeper-game/minesweeper-game.component';
 import { MineFieldComponent } from './minesweeper/mine-field/mine-field.component';
 import { GameCellComponent } from './minesweeper/game-cell/game-cell.component';
 import { MinesweeperModule } from './minesweeper/minesweeper.module';
@@ -17,7 +18,7 @@ import { HomeComponent } from './home/home.component';
     MinesweeperModule,
     RouterModule.forRoot([
       { path: 'home', component: HomeComponent },
-      { path: 'minesweeper', component: MineFieldComponent },
+      { path: 'minesweeper', component: MinesweeperGameComponent },
       { path: '**', redirectTo: 'home', pathMatch: 'full' },
 
   ])],
