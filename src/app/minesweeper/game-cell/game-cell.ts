@@ -11,6 +11,10 @@ export class GameCell {
     this.neighbors = [];
   }
 
+  switchFlag(): void {
+    this.isFlagged = !this.isFlagged;
+  }
+
  getSurroundingBombCount(): number {
     let count = 0;
     for (const neighbor of this.neighbors) {

@@ -1,8 +1,7 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { GameCell } from './game-cell';
-import 'hammerjs';
-import { $ } from 'protractor';
-import { JsonPipe } from '@angular/common';
+import { fromEventPattern } from 'rxjs';
+declare var $: any;
 
 @Component({
   selector: 'app-game-cell',
@@ -15,26 +14,19 @@ export class GameCellComponent {
   @Output() revealed: EventEmitter<GameCell> = new EventEmitter<GameCell>();
 
   tryReveal() {
-    if (this.gameCell.isRevealed || this.gameCell.isFlagged) {
+    if (this.gameCell.isRevealed || this.gameCell.isFlagged  || !this.isGameRunning) {
       return;
     }
     this.gameCell.reveal();
     this.revealed.emit(this.gameCell);
   }
 
-  onPress(event: any): void {
-    if (event.eventType !== 2) {
-      this.switchFlag();
+  tryFlag(event: any): void {
+    event.preventDefault();
+    if (!this.isGameRunning) {
+      return;
     }
-  }
-
-  onContextMenu(event: any): boolean {
-    this.switchFlag();
-    return false;
-  }
-
-  switchFlag()  {
-    this.gameCell.isFlagged = !this.gameCell.isFlagged;
+    this.gameCell.switchFlag();
   }
 
   getRepresentation(): string {
@@ -51,10 +43,10 @@ export class GameCellComponent {
       if (this.gameCell.isFlagged) {
         return '⛳';
       }
-      return ' ';
+      return '';
     }
     if (this.gameCell.getSurroundingBombCount() === 0) {
-      return ' ';
+      return '';
     }
     return `${this.gameCell.getSurroundingBombCount()}`;
   }
