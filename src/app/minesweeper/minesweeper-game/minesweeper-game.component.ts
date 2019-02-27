@@ -52,11 +52,20 @@ export class MinesweeperGameComponent implements OnInit {
   }
 
   onSelectionChange(): void {
+    this.startNewGame();
+  }
+
+  onPlayAgain(): void {
+    this.startNewGame();
+  }
+
+  startNewGame(): any {
     this.gameCells = this.minesweeperService.getGameField(this.selected);
     this.isGameRunning = true;
     this.bombCount = this.selected.bombCount;
     this.cellCount = this.selected.rowCount * this.selected.columnCount;
     this.flaggedCount = 0;
+    this.timerComponent.reset();
   }
 
   onRevealed(gameCell: GameCell) {

@@ -2,7 +2,7 @@
   <h1>Minesweeper</h1>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-sm-4">
+      <div class="col-sm-3">
         <mat-form-field>
           <mat-select [(value)]='selected' (selectionChange)='onSelectionChange()' placeholder="Difficulty">
             <mat-option *ngFor="let difficulty of difficulties" [value]="difficulty">
@@ -11,10 +11,13 @@
           </mat-select>
         </mat-form-field>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-3">
+        <button *ngIf="selected && !isGameRunning" (click)="startNewGame()">Play again</button>
+      </div>
+      <div class="col-sm-3">
         <app-timer [gameField]='gameCells'></app-timer>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-3">
         <app-bomb-counter *ngIf='suspectedRemainingBombCount >= 0 && isGameRunning' [suspectedRemainingBombs]='suspectedRemainingBombCount'></app-bomb-counter>
       </div>
     </div>

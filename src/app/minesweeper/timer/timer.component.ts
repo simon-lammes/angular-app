@@ -16,7 +16,7 @@ export class TimerComponent {
     if (this.isRunning) {
       return;
     }
-    this.secondsPassed = 0;
+    this.reset();
     this.interval = setInterval(() => {
       this.secondsPassed++;
     }, 1000);
@@ -26,5 +26,9 @@ export class TimerComponent {
   stop() {
     clearInterval(this.interval);
     this.isRunning = false;
+  }
+
+  reset() {
+    this.secondsPassed = 0;
   }
 }
