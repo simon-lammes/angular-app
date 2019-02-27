@@ -1,3 +1,4 @@
+import { Difficulty } from './difficulty';
 import { Injectable } from '@angular/core';
 import { GameCell } from './game-cell/game-cell';
 
@@ -6,9 +7,21 @@ import { GameCell } from './game-cell/game-cell';
 })
 export class MinesweeperService {
 
-  constructor() { }
+  difficulties: Difficulty[];
 
-  getGameField(rowCount: number, columnCount: number, bombCount: number): GameCell[][] {
+  constructor() {
+    this.difficulties = [
+      new Difficulty('getting started', 9, 9, 5),
+      new Difficulty('easy', 9, 9, 10),
+      new Difficulty('medium', 16, 16 , 40),
+      new Difficulty('hard', 30, 16, 99)
+    ]
+  }
+
+  getGameField(difficulty: Difficulty): GameCell[][] {
+    const rowCount = difficulty.rowCount;
+    const columnCount = difficulty.columnCount;
+    const bombCount = difficulty.bombCount;
     const gameCells = [];
     const bombIndexes = this.getBombIndexes(rowCount * columnCount, bombCount);
 
