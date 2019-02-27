@@ -1,12 +1,25 @@
 <div class="container-fluid">
   <h1>Minesweeper</h1>
-  <mat-form-field>
-    <mat-select [(value)]='selected' (selectionChange)='onSelectionChange()' placeholder="Difficulty">
-      <mat-option *ngFor="let difficulty of difficulties" [value]="difficulty">
-        {{difficulty.name}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-4">
+        <mat-form-field>
+          <mat-select [(value)]='selected' (selectionChange)='onSelectionChange()' placeholder="Difficulty">
+            <mat-option *ngFor="let difficulty of difficulties" [value]="difficulty">
+              {{difficulty.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+        One of three columns
+      </div>
+      <div class="col-sm-4">
+        One of three columns
+      </div>
+    </div>
+  </div>
+
   <app-mine-field [isGameRunning]='isGameRunning' [gameCells]='gameCells' (revealed)='onRevealed($event)'></app-mine-field>
 </div>
 
