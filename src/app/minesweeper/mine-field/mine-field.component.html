@@ -1,7 +1,7 @@
 <table>
   <tr *ngFor="let row of gameCells">
     <td *ngFor="let gameCell of row">
-      <app-game-cell [isGameRunning]='isGameRunning' [gameCell]='gameCell' (revealed)='onRevealed($event)'></app-game-cell>
+      <app-game-cell [isGameRunning]='isGameRunning' [gameCell]='gameCell' (flagged)='onFlagged($event)' (revealed)='onRevealed($event)'></app-game-cell>
     </td>
   </tr>
 </table>

@@ -17,6 +17,7 @@ export class MinesweeperGameComponent implements OnInit {
   gameCells: GameCell[][];
   cellCount: number;
   bombCount: number;
+  flaggedCount: number;
   isGameRunning: boolean;
   @ViewChild(TimerComponent)
   private timerComponent: TimerComponent;
@@ -33,6 +34,14 @@ export class MinesweeperGameComponent implements OnInit {
     return count;
   }
 
+  get suspectedRemainingBombCount() {
+    let value = this.bombCount - this.flaggedCount;
+    if (value < 0) {
+      value = 0;
+    }
+    return value;
+  }
+
   constructor(private minesweeperService: MinesweeperService) {
     this.difficulties = minesweeperService.difficulties;
     this.gameCells = [];
@@ -47,6 +56,7 @@ export class MinesweeperGameComponent implements OnInit {
     this.isGameRunning = true;
     this.bombCount = this.selected.bombCount;
     this.cellCount = this.selected.rowCount * this.selected.columnCount;
+    this.flaggedCount = 0;
   }
 
   onRevealed(gameCell: GameCell) {
@@ -59,6 +69,14 @@ export class MinesweeperGameComponent implements OnInit {
     if (this.revealedCellCount === this.cellCount - this.bombCount) {
       alert('You have won');
       this.isGameRunning = false;
+    }
+  }
+
+  onFlagged(flagged: boolean) {
+    if (flagged) {
+      this.flaggedCount++;
+    } else {
+      this.flaggedCount--;
     }
   }
 }

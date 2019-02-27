@@ -12,10 +12,15 @@ export class MineFieldComponent {
   @Input() gameCells: GameCell[][];
   @Input() isGameRunning: boolean;
   @Output() revealed: EventEmitter<GameCell> = new EventEmitter<GameCell>();
+  @Output() flagged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private minesweeperService: MinesweeperService) { }
 
   onRevealed(gameCell: GameCell) {
     this.revealed.emit(gameCell);
+  }
+
+  onFlagged(flagged: boolean) {
+    this.flagged.emit(flagged);
   }
 }

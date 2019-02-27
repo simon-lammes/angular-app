@@ -12,6 +12,7 @@ export class GameCellComponent {
   @Input() gameCell: GameCell;
   @Input() isGameRunning: boolean;
   @Output() revealed: EventEmitter<GameCell> = new EventEmitter<GameCell>();
+  @Output() flagged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   tryReveal() {
     if (this.gameCell.isRevealed || this.gameCell.isFlagged  || !this.isGameRunning) {
@@ -27,6 +28,7 @@ export class GameCellComponent {
       return;
     }
     this.gameCell.switchFlag();
+    this.flagged.emit(this.gameCell.isFlagged);
   }
 
   getRepresentation(): string {
