@@ -6,7 +6,7 @@
         <mat-form-field>
           <mat-select [(value)]='selected' (selectionChange)='onSelectionChange()' placeholder="Difficulty">
             <mat-option *ngFor="let difficulty of difficulties" [value]="difficulty">
-              {{difficulty.name}}
+              {{difficulty.description}}
             </mat-option>
           </mat-select>
         </mat-form-field>
