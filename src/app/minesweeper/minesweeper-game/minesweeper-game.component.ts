@@ -67,6 +67,7 @@ export class MinesweeperGameComponent implements OnInit {
     }
     this.timerComponent.startIfNecessary();
     if (this.revealedCellCount === this.cellCount - this.bombCount) {
+      this.timerComponent.stop();
       alert('You have won');
       this.isGameRunning = false;
     }
