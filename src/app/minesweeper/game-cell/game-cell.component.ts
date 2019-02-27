@@ -43,6 +43,9 @@ export class GameCellComponent {
     }
     if (!this.gameCell.isRevealed) {
       if (this.gameCell.isFlagged) {
+        if (!this.isGameRunning && !this.gameCell.isBomb) {
+          return '❌';
+        }
         return '⛳';
       }
       return '';
