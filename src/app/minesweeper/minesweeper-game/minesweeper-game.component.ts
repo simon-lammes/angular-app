@@ -1,7 +1,9 @@
+import { TimerComponent } from './../timer/timer.component';
 import { MinesweeperService } from './../minesweeper.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { GameCell } from '../game-cell/game-cell';
 import { Difficulty } from '../difficulty';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-minesweeper-game',
@@ -16,6 +18,8 @@ export class MinesweeperGameComponent implements OnInit {
   cellCount: number;
   bombCount: number;
   isGameRunning: boolean;
+  @ViewChild(TimerComponent)
+  private timerComponent: TimerComponent;
 
   get revealedCellCount() {
     let count = 0;
@@ -48,8 +52,10 @@ export class MinesweeperGameComponent implements OnInit {
   onRevealed(gameCell: GameCell) {
     if (gameCell.isBomb) {
       this.isGameRunning = false;
+      this.timerComponent.stop();
       return;
     }
+    this.timerComponent.startIfNecessary();
     if (this.revealedCellCount === this.cellCount - this.bombCount) {
       alert('You have won');
       this.isGameRunning = false;
