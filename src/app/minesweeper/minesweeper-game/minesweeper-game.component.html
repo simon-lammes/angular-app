@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-sm-3">
         <mat-form-field>
-          <mat-select [(value)]='selected' (selectionChange)='onSelectionChange()' placeholder="Difficulty">
+          <mat-select [(value)]='selected' (selectionChange)='startNewGame()' placeholder="Difficulty">
             <mat-option *ngFor="let difficulty of difficulties" [value]="difficulty">
               {{difficulty.description}}
             </mat-option>

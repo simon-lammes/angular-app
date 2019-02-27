@@ -51,14 +51,6 @@ export class MinesweeperGameComponent implements OnInit {
     this.isGameRunning = true;
   }
 
-  onSelectionChange(): void {
-    this.startNewGame();
-  }
-
-  onPlayAgain(): void {
-    this.startNewGame();
-  }
-
   startNewGame(): any {
     this.gameCells = this.minesweeperService.getGameField(this.selected);
     this.isGameRunning = true;
