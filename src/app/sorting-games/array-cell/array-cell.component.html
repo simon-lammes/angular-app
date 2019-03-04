@@ -1,0 +1,6 @@
+<div [class.marked]="arrayCell.marked" (click)="onClick()">{{ arrayCell.value }}</div>
+<table>
+  <tr>
+    <td *ngFor="let pointer of pointers" [ngClass]="pointer"></td>
+  </tr>
+</table>

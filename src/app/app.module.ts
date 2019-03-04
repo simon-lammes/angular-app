@@ -7,6 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { SortingGamesModule } from './sorting-games/sorting-games.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { HomeComponent } from './home/home.component';
   imports: [
     BrowserModule,
     MinesweeperModule,
+    SortingGamesModule,
     RouterModule.forRoot([
       { path: 'home', component: HomeComponent },
       { path: 'minesweeper', component: MinesweeperGameComponent },

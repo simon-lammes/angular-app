@@ -1,0 +1,18 @@
+
+<table [class.sorted]="array.isSorted">
+  <tr>
+    <td *ngFor="let arrayCell of array.array; let i = index">
+      <app-array-cell [pointers]="array.getPointersForArrayCell(i)" [arrayCell]="arrayCell"></app-array-cell>
+    </td>
+  </tr>
+  <tr *ngIf="array.leftSubArray || array.rightSubArray">
+    <td *ngIf="array.leftSubArray" [colSpan]="array.leftSubArray.array.length">
+        <app-merge-sort-array [array]="array.leftSubArray"></app-merge-sort-array>
+    </td>
+    <td *ngIf="array.rightSubArray" [colSpan]="array.rightSubArray.array.length">
+        <app-merge-sort-array [array]="array.rightSubArray"></app-merge-sort-array>
+    </td>
+  </tr>
+</table>
+
+

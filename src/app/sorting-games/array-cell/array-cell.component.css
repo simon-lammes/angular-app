@@ -1,0 +1,21 @@
+.marked {
+  background-color: red;
+}
+
+div {
+  border: 1px solid black;
+}
+
+.middlePointer {
+  background-color: violet !important;
+}
+
+.leftPointer, .rightPointer {
+  background-color: darkviolet !important;
+}
+
+table, tr, td {
+  width: 100%;
+  min-height: 10px;
+}
+

@@ -1,0 +1,13 @@
+table {
+  width: 95%;
+  margin: 2.5%;
+}
+
+th, td {
+  text-align: center;
+  padding: 10px;
+}
+
+.sorted {
+  background-color: green;
+}
