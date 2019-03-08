@@ -2,7 +2,4 @@
   <h1>Merge Sort</h1>
   <app-merge-sort-array [array]="array"></app-merge-sort-array>
   <button class="btn" (click)="onContinueClicked()">Continue</button>
-  <div class="step-options container-fluid" *ngIf="!playerHasChosenCorrectStep">
-    <app-step *ngFor="let step of possibleSteps" [step]="step" (stepClicked)="onStepClicked($event)"></app-step>
-  </div>
 </div>

@@ -13,9 +13,7 @@ export class MergeSortArray {
   constructor(array: ArrayCell[], parentArray: MergeSortArray) {
     this.parentArray = parentArray;
     this.array = array;
-    if (array.length === 1) {
-      this.isSorted = true;
-    }
+    this.isSorted = array.length === 1;
     this.leftPointer = 0;
     this.rightPointer = 0;
   }
