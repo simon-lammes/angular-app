@@ -10,8 +10,4 @@ export class ArrayCell {
   switchMarked(): any {
     this.marked = !this.marked;
   }
-
-  copy(): ArrayCell {
-    return new ArrayCell(this.value, this.marked);
-  }
 }

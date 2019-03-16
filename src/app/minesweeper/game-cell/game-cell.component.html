@@ -1,4 +1,4 @@
-<div *ngIf="gameCell" class="wrapper" [class.isRevealed]="gameCell.isRevealed" (contextmenu)="tryFlag($event)" (click)='tryReveal()'>
+<div class="wrapper" [class.isRevealed]="gameCell.isRevealed" (contextmenu)="tryFlag($event)" (click)='tryReveal()'>
   <div class="inside">
     <div>{{getRepresentation()}}</div>
   </div>

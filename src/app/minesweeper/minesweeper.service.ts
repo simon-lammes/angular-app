@@ -15,7 +15,7 @@ export class MinesweeperService {
       new Difficulty('easy', 9, 9, 10),
       new Difficulty('medium', 16, 16 , 40),
       new Difficulty('hard', 30, 16, 99)
-    ]
+    ];
   }
 
   getGameField(difficulty: Difficulty): GameCell[][] {
@@ -57,7 +57,7 @@ export class MinesweeperService {
     }
   }
 
-  getBombIndexes(length: number, bombCount: number): number[] {
+  private getBombIndexes(length: number, bombCount: number): number[] {
     const bombIndexes = [];
     while (bombIndexes.length < bombCount) {
       const randomIndex = Math.floor(Math.random() * length);

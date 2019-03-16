@@ -32,25 +32,19 @@ export class GameCellComponent {
   }
 
   getRepresentation(): string {
-    if (!this.isGameRunning && this.gameCell.isBomb) {
-      if (this.gameCell.isRevealed) {
-        return '💥';
-      }
-      if (this.gameCell.isFlagged) {
-        return '⛳';
-      }
+    if (this.gameCell.isBomb && this.gameCell.isRevealed) {
+      return '💥';
+    }
+    if (this.isGameRunning && this.gameCell.isFlagged) {
+      return '⛳';
+    }
+    if (!this.isGameRunning && this.gameCell.isBomb && !this.gameCell.isRevealed) {
       return '💣';
     }
-    if (!this.gameCell.isRevealed) {
-      if (this.gameCell.isFlagged) {
-        if (!this.isGameRunning && !this.gameCell.isBomb) {
-          return '❌';
-        }
-        return '⛳';
-      }
-      return '';
+    if (!this.isGameRunning && !this.gameCell.isBomb && this.gameCell.isFlagged) {
+      return '❌';
     }
-    if (this.gameCell.getSurroundingBombCount() === 0) {
+    if (this.gameCell.getSurroundingBombCount() === 0 || (!this.gameCell.isRevealed && !this.gameCell.isFlagged)) {
       return '';
     }
     return `${this.gameCell.getSurroundingBombCount()}`;

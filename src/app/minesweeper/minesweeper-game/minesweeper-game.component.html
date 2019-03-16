@@ -12,13 +12,13 @@
         </mat-form-field>
       </div>
       <div class="col-sm-3">
-        <button *ngIf="selected && !isGameRunning" (click)="startNewGame()">Play again</button>
+        <button id="playAgainButton" *ngIf="selected && !isGameRunning" (click)="startNewGame()">Play again</button>
       </div>
       <div class="col-sm-3">
         <app-timer [gameField]='gameCells'></app-timer>
       </div>
       <div class="col-sm-3">
-        <app-bomb-counter *ngIf='suspectedRemainingBombCount >= 0 && isGameRunning' [suspectedRemainingBombs]='suspectedRemainingBombCount'></app-bomb-counter>
+        <app-bomb-counter *ngIf='isGameRunning' [suspectedRemainingBombs]='suspectedRemainingBombCount'></app-bomb-counter>
       </div>
     </div>
   </div>

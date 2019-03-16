@@ -15,12 +15,10 @@ export class MinesweeperGameComponent implements OnInit {
   selected: Difficulty;
   difficulties: Difficulty[];
   gameCells: GameCell[][];
-  cellCount: number;
-  bombCount: number;
   flaggedCount: number;
   isGameRunning: boolean;
   @ViewChild(TimerComponent)
-  private timerComponent: TimerComponent;
+  timerComponent: TimerComponent;
 
   get revealedCellCount() {
     let count = 0;
@@ -35,7 +33,10 @@ export class MinesweeperGameComponent implements OnInit {
   }
 
   get suspectedRemainingBombCount() {
-    let value = this.bombCount - this.flaggedCount;
+    if (!this.selected) {
+      return 0;
+    }
+    let value = this.selected.bombCount - this.flaggedCount;
     if (value < 0) {
       value = 0;
     }
@@ -54,8 +55,6 @@ export class MinesweeperGameComponent implements OnInit {
   startNewGame(): any {
     this.gameCells = this.minesweeperService.getGameField(this.selected);
     this.isGameRunning = true;
-    this.bombCount = this.selected.bombCount;
-    this.cellCount = this.selected.rowCount * this.selected.columnCount;
     this.flaggedCount = 0;
     this.timerComponent.reset();
   }
@@ -67,7 +66,7 @@ export class MinesweeperGameComponent implements OnInit {
       return;
     }
     this.timerComponent.startIfNecessary();
-    if (this.revealedCellCount === this.cellCount - this.bombCount) {
+    if (this.revealedCellCount === this.selected.cellCount - this.selected.bombCount) {
       this.timerComponent.stop();
       alert('You have won');
       this.isGameRunning = false;

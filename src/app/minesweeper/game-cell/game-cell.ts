@@ -26,7 +26,7 @@ export class GameCell {
   }
 
   reveal(): void {
-    if (this.isRevealed) {
+    if (this.isRevealed || this.isFlagged) {
       return;
     }
     this.isRevealed = true;

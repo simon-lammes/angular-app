@@ -1,6 +1,9 @@
+import { ArrayCellComponent } from './../array-cell/array-cell.component';
+import { ArrayCell } from './../array-cell/array-cell';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MergeSortArrayComponent } from './merge-sort-array.component';
+import { MergeSortArray } from './merge-sort-array';
 
 describe('MergeSortArrayComponent', () => {
   let component: MergeSortArrayComponent;
@@ -8,7 +11,7 @@ describe('MergeSortArrayComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MergeSortArrayComponent ]
+      declarations: [ MergeSortArrayComponent, ArrayCellComponent ]
     })
     .compileComponents();
   }));
@@ -16,10 +19,11 @@ describe('MergeSortArrayComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(MergeSortArrayComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
+    component.array = new MergeSortArray([new ArrayCell(2839)], null);
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 });
