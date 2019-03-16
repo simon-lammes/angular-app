@@ -14,7 +14,7 @@ This is [my Angular Website](https://simon-lammes.github.io/angular-app/) hosted
 1. Install [node.js](https://nodejs.org/en/) as it comes with npm.
 1. Run **npm install -g angular-cli-ghpages**. This will enable you to run the **ngh** command later.
 1. Inside your project inside angular.json set the outputPath to "dist/".
-1. Connect your local repository to the remote GitHub repository from where you want your repository to be shared.
+1. Connect your local repository to the remote GitHub repository from where you want your repository to be hosted.
 
 ## How I deploy this Angular application on GitHub
 
