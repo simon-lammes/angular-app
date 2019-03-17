@@ -1,7 +1,14 @@
 import { ArrayCell } from '../array-cell/array-cell';
 import { Input } from '@angular/core';
+import { Step } from '../step/step';
 
 export class MergeSortArray {
+  static stepCreateSubArray: Step = new Step('Create sub-array',
+    'When the array we are trying to sort currently does not have two sub-arrays, we need to create them.');
+  static stepMergeSubArrays: Step = new Step('Merge sub arrays',
+    'When the array we are currently trying to sort already has two sorted sub-arrays, we merge them.');
+  static stepReturn: Step = new Step('Return', 'The array is sorted so we can return.');
+  static possibleSteps: Step[] = [MergeSortArray.stepCreateSubArray, MergeSortArray.stepMergeSubArrays, MergeSortArray.stepReturn];
   array: ArrayCell[];
   parentArray: MergeSortArray;
   leftSubArray: MergeSortArray;
@@ -18,27 +25,32 @@ export class MergeSortArray {
     this.rightPointer = 0;
   }
 
-  nextStep() {
+  nextStep(doItForReal = true): Step {
     if (this.isSorted) {
-      return;
+      return MergeSortArray.stepReturn;
     }
     if (!this.leftSubArray) {
-      this.leftSubArray = new MergeSortArray(this.array.slice(0, this.array.length / 2), this);
-      return;
+      if (doItForReal) {
+        this.leftSubArray = new MergeSortArray(this.array.slice(0, this.array.length / 2), this);
+      }
+      return MergeSortArray.stepCreateSubArray;
     }
     if (!this.leftSubArray.isSorted) {
-      this.leftSubArray.nextStep();
-      return;
+      return this.leftSubArray.nextStep(doItForReal);
     }
     if (!this.rightSubArray) {
-      this.rightSubArray = new MergeSortArray(this.array.slice(this.array.length / 2, this.array.length), this);
-      return;
+      if (doItForReal) {
+        this.rightSubArray = new MergeSortArray(this.array.slice(this.array.length / 2, this.array.length), this);
+      }
+      return MergeSortArray.stepCreateSubArray;
     }
     if (!this.rightSubArray.isSorted) {
-      this.rightSubArray.nextStep();
-      return;
+      return this.rightSubArray.nextStep(doItForReal);
     }
-    this.nextStepMerge();
+    if (doItForReal) {
+      this.nextStepMerge();
+    }
+    return MergeSortArray.stepMergeSubArrays;
   }
 
   nextStepMerge(): any {

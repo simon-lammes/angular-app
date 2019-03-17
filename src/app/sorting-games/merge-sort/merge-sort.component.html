@@ -1,5 +1,10 @@
 <div class="container-fluid">
   <h1>Merge Sort</h1>
+  <h3>Mistakes: {{ mistakeCount }}</h3>
   <app-merge-sort-array [array]="array"></app-merge-sort-array>
-  <button class="btn" (click)="onContinueClicked()">Continue</button>
+  <div class="row">
+    <div *ngFor="let step of possibleSteps" class="col-sm-4">
+      <app-step [step]="step" (clicked)="onStepSelected($event)"></app-step>
+    </div>
+  </div>
 </div>

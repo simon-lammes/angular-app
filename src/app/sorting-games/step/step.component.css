@@ -1,0 +1,12 @@
+button {
+  display: inline-block;
+  margin: 20px;
+  background: gold;
+  border-radius: 7px;
+  line-break: strict;
+}
+
+button:active {
+  background: goldenrod;
+}
+
