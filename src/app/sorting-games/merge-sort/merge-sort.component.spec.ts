@@ -8,6 +8,8 @@ import { ArrayCellComponent } from '../array-cell/array-cell.component';
 import { By } from '@angular/platform-browser';
 import { StepComponent } from '../step/step.component';
 import { Step } from '../step/step';
+import { MatSelectModule } from '@angular/material/select';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('MergeSortComponent', () => {
   let component: MergeSortComponent;
@@ -18,7 +20,8 @@ describe('MergeSortComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MergeSortComponent, MergeSortArrayComponent, ArrayCellComponent, StepComponent ]
+      declarations: [ MergeSortComponent, MergeSortArrayComponent, ArrayCellComponent, StepComponent ],
+      imports: [ BrowserAnimationsModule, MatSelectModule ],
     })
     .compileComponents();
   }));
@@ -53,5 +56,35 @@ describe('MergeSortComponent', () => {
     }
 
     expect(component.mistakeCount).toBe(wrongAnswers);
-  })
+  });
+
+  it('should have appropriate success message when user made 1 mistake', () => {
+    const mistakeCount = 1;
+    component.mistakeCount = mistakeCount;
+
+    const successMessage = component.successMessage;
+
+    expect(successMessage).toContain(mistakeCount + '');
+    expect(successMessage).toContain('mistake');
+  });
+
+  it('should have appropriate success message when user no mistakes', () => {
+    const mistakeCount = 0;
+    component.mistakeCount = mistakeCount;
+
+    const successMessage = component.successMessage;
+
+    expect(successMessage).toContain(mistakeCount + '');
+    expect(successMessage).toContain('mistakes');
+  });
+
+  it('should have appropriate success message when user multiple mistakes', () => {
+    const mistakeCount = 423;
+    component.mistakeCount = mistakeCount;
+
+    const successMessage = component.successMessage;
+
+    expect(successMessage).toContain(mistakeCount + '');
+    expect(successMessage).toContain('mistakes');
+  });
 });

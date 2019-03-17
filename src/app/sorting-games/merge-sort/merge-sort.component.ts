@@ -12,14 +12,29 @@ export class MergeSortComponent implements OnInit {
 
   array: MergeSortArray;
   mistakeCount: number;
+  possibleArrayLengths: number[];
+  selectedArrayLength: number;
   get possibleSteps(): Step[] {
     return MergeSortArray.possibleSteps;
+  }
+  get successMessage(): string {
+    if (this.mistakeCount === 1) {
+      return 'You finished with ' + this.mistakeCount + ' mistake.';
+    } else {
+      return 'You finished with ' + this.mistakeCount + ' mistakes.';
+    }
   }
 
   constructor(private randomArrayService: RandomArrayService) { }
 
   ngOnInit() {
-    this.array = new MergeSortArray(this.randomArrayService.getRandomArray(4, 0, 20), null);
+    this.possibleArrayLengths = [4, 5, 6, 7];
+    this.selectedArrayLength = 4;
+    this.startNewGame();
+  }
+
+  startNewGame(): any {
+    this.array = new MergeSortArray(this.randomArrayService.getRandomArray(this.selectedArrayLength, 0, 20), null);
     this.mistakeCount = 0;
   }
 

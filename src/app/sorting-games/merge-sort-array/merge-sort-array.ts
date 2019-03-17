@@ -7,8 +7,7 @@ export class MergeSortArray {
     'When the array we are trying to sort currently does not have two sub-arrays, we need to create them.');
   static stepMergeSubArrays: Step = new Step('Merge sub arrays',
     'When the array we are currently trying to sort already has two sorted sub-arrays, we merge them.');
-  static stepReturn: Step = new Step('Return', 'The array is sorted so we can return.');
-  static possibleSteps: Step[] = [MergeSortArray.stepCreateSubArray, MergeSortArray.stepMergeSubArrays, MergeSortArray.stepReturn];
+  static possibleSteps: Step[] = [MergeSortArray.stepCreateSubArray, MergeSortArray.stepMergeSubArrays];
   array: ArrayCell[];
   parentArray: MergeSortArray;
   leftSubArray: MergeSortArray;
@@ -27,7 +26,7 @@ export class MergeSortArray {
 
   nextStep(doItForReal = true): Step {
     if (this.isSorted) {
-      return MergeSortArray.stepReturn;
+      return;
     }
     if (!this.leftSubArray) {
       if (doItForReal) {
