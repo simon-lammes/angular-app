@@ -26,7 +26,7 @@ export class MergeSortComponent implements OnInit {
   onStepSelected(step: Step): void {
     const nextStep = this.array.nextStep(false);
     if (nextStep === step) {
-      this.array.nextStep();
+      this.array.nextStep(true);
     } else {
       this.mistakeCount++;
     }

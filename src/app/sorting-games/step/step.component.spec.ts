@@ -31,4 +31,16 @@ describe('StepComponent', () => {
     expect(titleElement.textContent).toBe(title);
     expect(descriptionElement.textContent).toBe(description);
   });
+
+  it('should forward click event', () => {
+    component.step = new Step('', '');
+    fixture.detectChanges();
+    const clickableElement = fixture.debugElement.query(By.css('button'));
+    spyOn(component.clicked, 'emit');
+
+    clickableElement.triggerEventHandler('click', null);
+
+    expect(component.clicked.emit).toHaveBeenCalledTimes(1);
+    expect(component.clicked.emit).toHaveBeenCalledWith(component.step);
+  })
 });
